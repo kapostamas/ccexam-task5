@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
+import Subscription from './Subscription';
 
-function Hotel({name, stars, city, onInquire}) {
+function Hotel({name, stars, city}) {
 	const [showDetails, setShowDetails] = useState(false);
-	return <div>
-		<h2>{name}</h2>
+	const [showSubscription, setShowSubscription] = useState(false);
+
+	return <div className='hotel'>
+		<p>{name}</p>
 		{showDetails ? <>
-			<p>{'★'.repeat(stars) || 'No stars'}</p>
-			<p>{city}</p>
-			<button onClick={onInquire}>Request more info</button>
 			<button onClick={() => setShowDetails(false)}>Show less</button>
+			<p>{city} ({stars})</p>
+			<button onClick={() => setShowSubscription(true)}>Request more info about {name}</button>
+			{showSubscription && <Subscription subject={name} onClose={() => {setShowDetails(false); setShowSubscription(false)}}/>}
 		</> :
 			<button onClick={() => setShowDetails(true)}>Show more</button>
 		}

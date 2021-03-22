@@ -33,11 +33,10 @@ function Subscription({subject, onClose}) {
 	}
 	return success === null ?
 		<>
-			<h1>Request more info about {subject}</h1>
 			{!isLoading ?
 				<div>
 					<input type='text' value={email} placeholder="Email" onChange={e => setEmail(e.target.value)}/>
-					<button onClick={subscribe} disabled={!isValid}>Subscribe</button>
+					<button onClick={subscribe} disabled={!isValid}>Submit</button>
 				</div>
 			:
 				<LoadingMask/>
